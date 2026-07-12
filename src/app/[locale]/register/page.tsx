@@ -1,5 +1,5 @@
 import Logo from "@/components/common/Logo";
-import LoginForm from "@/components/features/login/LoginForm";
+import RegisterForm from "@/components/features/register/RegisterForm";
 import {
   Card,
   CardContent,
@@ -21,22 +21,19 @@ export default function Page() {
             <Logo />
           </div>
           <CardTitle className="text-2xl text-center">
-            {t("login.title")}
+            {t("register.title")}
           </CardTitle>
           <CardDescription className="text-center">
-            {t("login.description")}
+            {t("register.description")}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <LoginForm />
+          <RegisterForm />
           <div className="p-5 pb-0 flex justify-center items-center text-center gap-1">
             <p className="text-center text-sm text-muted-foreground">
-              {t("login.dont_have_account")}
+              {t("register.already_have_account")}
             </p>{" "}
-            <Link href="/register">{t("login.register")}</Link>
-          </div>
-          <div className="p-x-5 py-3 pb-0 flex justify-center items-center text-center gap-1">
-            <Link href="/forgot-password">{t("login.forgot_password")}</Link>
+            <Link href="/login">{t("register.login")}</Link>
           </div>
         </CardContent>
       </Card>

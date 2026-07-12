@@ -1,3 +1,106 @@
 {
-  "name": "Sharidah Alshamri"
+  "meta": {
+    "title": "CEO App",
+    "description": "A comprehensive cloud platform providing financial accounting solutions, HR management, organizational structure design, and website building for startups and enterprises. Boost your company's efficiency today with Al-Raees software."
+  },
+
+  "auth_sidebar": {
+    "financial_services": "Financial Services",
+    "project_management": "Project Management",
+    "accounting": "Accounting",
+    "hr": "HR Management",
+    "reports": "Detailed reports in one place",
+    "e_invoicing": "E-Invoicing",
+    "websites": "Website Creation",
+    "buffet": "Buffet",
+    "auditing": "Subsidiary Control",
+    "org_structure": "Organizational Structure"
+  },
+
+  "attributes": {
+    "email": "Email Address",
+    "password": "Password",
+    "username": "Username",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "phone": "Phone Number",
+    "password_confirmation": "Confirm Password",
+    "remember_token": "Remember Me",
+    "otp": "Verification Code"
+  },
+
+  "validation": {
+    "required": "This field is required",
+    "email": "Please enter a valid email address",
+    "password": "Please enter the password",
+    "username": "Please enter the username",
+    "first_name": "Please enter the first name",
+    "last_name": "Please enter the last name",
+    "phone": "Please enter a valid phone number",
+    "password_min_length": "Password must be at least {count} characters long",
+    "username_invalid": "Username must contain only English letters and numbers, with no spaces",
+    "phone_invalid": "Phone number must contain numbers only",
+    "password_mismatch": "Passwords do not match"
+  },
+
+  "buttons": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "send": "Send",
+    "reset_password": "Reset Password"
+  },
+
+  "theme": {
+    "dark": "Dark Mode",
+    "light": "Light Mode",
+    "system": "System Mode"
+  },
+
+  "locale": {
+    "ar": "Arabic",
+    "en": "English"
+  },
+
+  "messages": {
+    "login": {
+      "title": "Login",
+      "description": "Enter your email and password to login",
+      "dont_have_account": "Don't have an account?",
+      "register": "Create a new account",
+      "forgot_password": "Forgot password?"
+    },
+    "register": {
+      "title": "Create a New Account",
+      "description": "Enter your details to create a new account",
+      "already_have_account": "Already have an account?",
+      "login": "Login"
+    },
+    "confirm_email": {
+      "title": "Confirm Email Address",
+      "description": "Enter the confirmation code sent to your email",
+      "resend": "Resend",
+      "resend_message": "Didn't receive the email? "
+    },
+    "forgot_password": {
+      "title": "Forgot Password",
+      "description": "Enter your email to recover your password, a confirmation code will be sent to your email",
+      "reset_password": "Recover Password"
+    },
+    "reset_password": {
+      "title": "Reset Password",
+      "description": "Enter your new password",
+      "reset_password": "Reset Password"
+    }
+  },
+
+  "errors": {
+    "something_went_wrong": "Something went wrong, please try again later",
+    "network_error": "Failed to connect to the server, please check your network connection"
+  },
+
+  "pages": {
+    "login": "Login",
+    "register": "Create a New Account"
+  }
 }
