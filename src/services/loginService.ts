@@ -9,14 +9,15 @@ export async function login(data: LoginData) {
     ? response.headers["set-cookie"]
     : undefined;
 
+  const cookieStore = await cookies();
+
   if (cookieHeader) {
-    const cookieStore = await cookies();
     const rawCookie = Array.isArray(cookieHeader)
       ? cookieHeader[0]
       : cookieHeader;
 
     const tokenMatch = rawCookie.match(/token=([^;]+)/);
-    const tokenValue = tokenMatch ? tokenMatch[1] : response.data.token;
+    const tokenValue = tokenMatch ? tokenMatch[1] : response.data?.data?.token;
 
     if (tokenValue) {
       const maxAgeMatch = rawCookie.match(/Max-Age=([^;]+)/i);
@@ -28,13 +29,27 @@ export async function login(data: LoginData) {
       cookieStore.set({
         name: "auth_token",
         value: tokenValue,
-        httpOnly: true,
+        httpOnly: false,
         secure: false,
         sameSite: "lax",
         path: "/",
         ...(maxAge !== undefined ? { maxAge } : expires ? { expires } : {}),
       });
     }
+  }
+
+  const tenants = response.data?.data?.tenants;
+  if (Array.isArray(tenants) && tenants.length > 0) {
+    const firstTenantId = tenants[0].id;
+
+    cookieStore.set({
+      name: "tenant",
+      value: String(firstTenantId),
+      httpOnly: false,
+      secure: false,
+      sameSite: "lax",
+      path: "/",
+    });
   }
 
   return response.data;
