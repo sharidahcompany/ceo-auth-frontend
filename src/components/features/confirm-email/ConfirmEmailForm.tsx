@@ -50,14 +50,30 @@ export default function ConfirmEmailForm() {
           position: "bottom-right",
         });
 
-        if (response.data?.data?.tenants.length > 0) {
+        const apiData = response?.data as any;
+        const token = apiData?.data?.token || apiData?.token;
+        const tenants = apiData?.data?.tenants || apiData?.tenants;
+        const tenantId = Array.isArray(tenants) && tenants.length > 0 ? tenants[0].id : "";
+
+        const appendParams = (url: string) => {
+          if (!token) return url;
+          const separator = url.includes("?") ? "&" : "?";
+          let newUrl = `${url}${separator}auth_token=${token}`;
+          if (tenantId) {
+            newUrl += `&tenant=${tenantId}`;
+          }
+          return newUrl;
+        };
+
+        if (tenants && tenants.length > 0) {
           const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL as string;
-          window.location.href = `${dashboardUrl}/${currentLocale}`;
+          window.location.href = appendParams(`${dashboardUrl}/${currentLocale}`);
         } else {
           const refererUrl = Cookies.get("redirect_origin");
-          window.location.href = refererUrl
+          const targetUrl = refererUrl
             ? `${refererUrl}/${currentLocale}`
-            : (process.env.NEXT_PUBLIC_LANDING_URL as string);
+            : (process.env.NEXT_PUBLIC_CEO_LANDING_PAGE_URL as string);
+          window.location.href = appendParams(targetUrl);
         }
       }
     });

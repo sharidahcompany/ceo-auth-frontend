@@ -1,6 +1,6 @@
 import api from "@/lib/api";
 
 export async function resendConfirmEmail() {
-  const response = await api.get("/users/verify-email");
+  const response = await api.get("/auth/users/verify-email");
   return response.data;
 }
