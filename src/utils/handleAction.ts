@@ -19,6 +19,9 @@ export async function handleAction<T>(
   } catch (err) {
     const error = err as AxiosError<ApiErrorData>;
 
+    console.log(error);
+
+
     if (error.response) {
       return {
         success: false,
