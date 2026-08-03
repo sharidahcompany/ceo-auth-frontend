@@ -25,10 +25,3 @@ export type ResetPasswordData = z.infer<
 export type AcceptInvitationData = z.infer<
   ReturnType<typeof getAcceptInvitationSchema>
 >;
-
-export interface InvitationSignature {
-  user_id: string;
-  tenant_id: string;
-  expires: string;
-  signature: string;
-}

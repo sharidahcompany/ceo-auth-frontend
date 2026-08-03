@@ -16,11 +16,10 @@ import { KeyRound } from "lucide-react";
 import { useRouter } from "@/i18n/navigation";
 
 type Props = {
-  queryString: string;
-  userId: string;
+  token: string;
 };
 
-export default function AcceptInvitationForm({ queryString, userId }: Props) {
+export default function AcceptInvitationForm({ token }: Props) {
   const t = useTranslations();
   const acceptInvitationSchema = getAcceptInvitationSchema(t);
   const [isPending, startTransition] = useTransition();
@@ -41,8 +40,7 @@ export default function AcceptInvitationForm({ queryString, userId }: Props) {
   function onSubmit(data: AcceptInvitationData) {
     startTransition(async () => {
       const response = await completeInvitationAction(
-        queryString,
-        userId,
+        token,
         data.password,
         data.password_confirmation,
       );

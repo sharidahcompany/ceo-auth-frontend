@@ -14,10 +14,7 @@ import { getTranslations } from "next-intl/server";
 
 type Props = {
   searchParams: Promise<{
-    user_id?: string;
-    tenant_id?: string;
-    expires?: string;
-    signature?: string;
+    token?: string;
   }>;
 };
 
@@ -25,26 +22,9 @@ export default async function Page({ searchParams }: Props) {
   const t = await getTranslations("messages");
   const params = await searchParams;
 
-  const userId = params.user_id;
-  const hasSignatureParams =
-    userId && params.tenant_id && params.expires && params.signature;
+  const token = params.token;
 
-  // Laravel validates signed URLs against the raw, literal query string order
-  // (it sorts params alphabetically when signing but does NOT re-sort when
-  // verifying) — so these must be rebuilt in alphabetical key order or every
-  // signature check fails even though the values are correct.
-  const queryString = hasSignatureParams
-    ? new URLSearchParams({
-        expires: params.expires!,
-        signature: params.signature!,
-        tenant_id: params.tenant_id!,
-        user_id: params.user_id!,
-      }).toString()
-    : "";
-
-  const verification = hasSignatureParams
-    ? await verifyInvitationAction(queryString)
-    : null;
+  const verification = token ? await verifyInvitationAction(token) : null;
 
   const isValid = Boolean(verification?.success);
 
@@ -68,7 +48,7 @@ export default async function Page({ searchParams }: Props) {
         </CardHeader>
         <CardContent>
           {isValid ? (
-            <AcceptInvitationForm queryString={queryString} userId={userId!} />
+            <AcceptInvitationForm token={token!} />
           ) : (
             <div className="flex flex-col items-center gap-4">
               <Link href="/login" className={buttonVariants({ className: "w-full" })}>
