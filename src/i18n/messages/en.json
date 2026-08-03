@@ -48,7 +48,8 @@
     "register": "Register",
     "logout": "Logout",
     "send": "Send",
-    "reset_password": "Reset Password"
+    "reset_password": "Reset Password",
+    "accept_invitation": "Accept Invitation"
   },
 
   "theme": {
@@ -91,6 +92,12 @@
       "title": "Reset Password",
       "description": "Enter your new password",
       "reset_password": "Reset Password"
+    },
+    "accept_invitation": {
+      "title": "Accept Invitation",
+      "description": "Set a password to activate your account and join the workspace",
+      "invalid_title": "Invalid or Expired Link",
+      "invalid_description": "This invitation link is no longer valid. Please ask the workspace owner to send you a new invitation."
     }
   },
 
